@@ -24,5 +24,10 @@
       $authen=new Authen("nitiwat.t","1234567890");
       $this->assertNotEquals("123456789",$authen->getPassword());
     }
+
+    public function test_PsuPassportAuthenticat(){
+      $PsuPassportAuthen=new PsuPassportAuthen("nitiwat.t","123456789");
+      $this->assertNotEquals("true",$PsuPassportAuthen->Authenticate());
+    }
   }
  ?>
