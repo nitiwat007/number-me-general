@@ -1,0 +1,54 @@
+html,body{margin:0;padding:0;background-color:#2E2E2E;  top repeat-x;width:100%;height:100%;font-family:Arial, Helvetica, sans-serif;}
+* html #wrap{height: 100%;}
+/*p,td{margin-top:0px;}
+
+a img{border:0;}*/
+/*a{color: #5b7c01;text-decoration:underline;}
+a:hover{color: #ffa200;	text-decoration:underline;}
+a.hidden{text-decoration: none;color:#000;cursor:default;}*/
+
+/*a{color: #5b7c01;text-decoration:none;}
+a:hover{color: #ffa200;	text-decoration:none;}
+a.hidden{text-decoration: none;color:#000;cursor:default;}
+
+form{margin:0;padding:0;}
+div.clr{clear:both;}
+
+ul{margin:0 0 0 20px;padding:0;list-style-type: square;line-height: 16px;}
+
+h1{font-size:20px;font-weight:normal;color:#000;margin:5px 0 10px;}
+h2{font-size:16px;font-weight:normal;color:#000;margin:2px 0 7px;}*/
+
+#wrap{position:relative; min-height:100%; margin:0 auto; width:100%;}
+#page{width:890px;margin:0 auto;}
+
+/*#header{position:relative; background:url(../images/img01.jpg) no-repeat; height:300px;}
+        #logo{position:absolute; margin:34px 0 0 45px;}
+        #company_name{font-size:26px;font-weight:normal; font-family:"trebuchet MS";text-transform: none;color:#000; position:absolute; margin:40px 0 0 120px;}
+        #intro{height:123px; background:url(../images/intro_bg.jpg) no-repeat; width:399px; position:absolute; margin:112px 0 0 20px; color:#FFF; padding:20px; font-size:5px; font-family:"trebuchet MS"; line-height:14px;}*/
+
+/*#menu{color: #FFF;font-weight:normal; padding:0;white-space: nowrap; background:#393833; height:61px; font-size:14px;}
+        #menu td.item{text-align:center; height:61px; line-height:61px; padding:0 30px;font-family:"trebuchet MS";}
+        #menu td.item:hover{background:#a6bf19; cursor:pointer;}
+        #menu a{text-decoration:none;color: #FFF;}
+        #menu a:hover{color: #fff;text-decoration: none;}*/
+/*#menu a{text-decoration:underline;color: #FFF;}
+#menu a:hover{color: #fff;text-decoration: underline;}*/
+
+/*#contentwrap{position:relative;}
+        #body_area{color:#000;text-align: justify;padding: 10px 20px 20px;vertical-align: top; background:#FFF; font-size:12px;}
+        #sidebar{}
+        #login_form{height: 20px;width: 150px;font-size: 12px;}*/
+
+/*#footer{width:890px;}
+        #bottom_menu{color:#000;text-align: center;padding: 15px 15px 4px; font-size:12px;}
+        #bottom_menu a{color:#000;text-decoration:none;}
+        #bottom_menu a:hover{color:#000;text-decoration:none;}*/
+/*#bottom_menu a{color:#000;text-decoration:underline;}
+#bottom_menu a:hover{color:#000;text-decoration:underline;}*/
+
+/*#bottom_addr{color:#FFF;text-align:center;padding:15px; font-size:11px;}
+#bottom_addr a{text-decoration:none; color:#FFF;}
+#bottom_addr a:hover{text-decoration: none;}*/
+/*#bottom_addr a{text-decoration:underline; color:#FFF;}
+#bottom_addr a:hover{text-decoration: underline;}*/
