@@ -5,23 +5,27 @@ include("A_connect.inc");
 
 include('lib/mainfunction.php');
 include('lib/web.inc.php');
-include("function/roles.php");
+// include("function/roles.php");
 
-
-require 'nusoap_/nusoap.php';
-$function = "Authenticate";
+require_once('Class/Authentication/Authen.php');
+include 'nusoap_/nusoap.php';
+// $function = "Authenticate";
 $username = $_POST['username'];
 $password = $_POST['password'];
-$request = array(
-    'username' => $username,
-    'password' => $password
-);
-$client = new nusoap_client('https://passport.psu.ac.th/authentication/authentication.asmx?wsdl', true);
-$client->decode_utf8 = false;
+// $request = array(
+//     'username' => $username,
+//     'password' => $password
+// );
+// $client = new nusoap_client('https://passport.psu.ac.th/authentication/authentication.asmx?wsdl', true);
+// $client->decode_utf8 = false;
+//
+// $proxy = $client->getProxy();
+// $authen = $proxy->Authenticate($request);
 
-$proxy = $client->getProxy();
-$authen = $proxy->Authenticate($request);
-if ($authen["AuthenticateResult"] == "true") {
+$PsuPassportAuthen=new PsuPassportAuthen($username,$password);
+
+
+if ($PsuPassportAuthen->Authenticate() == "true") {
 
     // $sql				= "select * from users_permission where passport_username='$username' and status=1";
     // mysql_select_db('numberme',$connect);
