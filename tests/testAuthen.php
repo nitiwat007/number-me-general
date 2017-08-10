@@ -14,8 +14,8 @@
 
     // public function test_GetUsername()
     // {
-    //   $authen=new Authen("nitiwat.t","123456789");
-    //   $this->assertEquals("nitiwat.t",$authen->getUsername());
+    //   $authen=new Authen("","123456789");
+    //   $this->assertEquals("",$authen->getUsername());
     // }
     //
     // public function test_GetPassword()
@@ -48,6 +48,12 @@
     //   $this->assertEquals("true",$PsuPassportAuthen->Authenticate());
     // }
 
+    public function test_PsuPassportAuthenticat()
+    {
+      $PsuPassportAuthen=new PsuPassportAuthen($this->username,$this->password);
+      $this->assertEquals("true",$PsuPassportAuthen->Authenticate());
+    }
+
     public function test_PsuPassportAuthenticatFail()
     {
       $PsuPassportAuthen=new PsuPassportAuthen($this->username,$this->wrongpassword);
@@ -68,6 +74,14 @@
       $GetStaffDetailsResult = $PsuPassportAuthen->GetStaffDetails();
       $staff_id=$GetStaffDetailsResult["string"][0];
       $this->assertEquals("0016508",$staff_id);
+    }
+
+    public function test_PsuPassportAuthen_GetUserDetails()
+    {
+      $PsuPassportAuthen=new PsuPassportAuthen($this->username,$this->password);
+      $GetUserDetailsResult = $PsuPassportAuthen->GetUserDetails();
+      $user_id=$GetUserDetailsResult["string"][3];
+      $this->assertEquals("0016508",$user_id);
     }
   }
  ?>

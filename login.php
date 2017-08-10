@@ -5,7 +5,9 @@ include("A_connect.inc");
 include('lib/mainfunction.php');
 include('lib/web.inc.php');
 include_once('Class/Authentication/Authen.php');
-;
+include_once('Class/Authentication/PsuPassportAuthen.php');
+include_once('Class/Authentication/roleprovider.php');
+
 $username = $_POST['username'];
 $password = $_POST['password'];
 
@@ -34,9 +36,7 @@ if ($PsuPassportAuthen->Authenticate() == "true") {
                 array_push($roles,$data["role_name_eng"]);
           }
           $_SESSION['roles']=$roles;
-
-          // echo var_dump($GetStaffDetailsResult["string"][1])."<br>";
-          // echo var_dump("นิติวัฒน์")."<br>";
+;
         echo '<META HTTP-EQUIV="Refresh"  CONTENT="0;URL=main.php">';
     } else {
         echo "YOU DON'T HAVE PERMISSION";

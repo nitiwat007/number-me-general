@@ -20,7 +20,6 @@ class PsuPassportAuthen extends Authen
 
   public function Authenticate()
   {
-
     $authen = $this->proxy->Authenticate($this->request);
     return $authen["AuthenticateResult"];
   }
@@ -28,9 +27,26 @@ class PsuPassportAuthen extends Authen
 
   public function GetStaffDetails()
   {
-
     $GetStaffDetails=$this->proxy->GetStaffDetails($this->request);
     return $GetStaffDetails['GetStaffDetailsResult'];
+  }
+
+  public function GetStaffID()
+  {
+    $GetStaffID=$this->proxy->GetStaffID($this->request);
+    return $GetStaffID['GetStaffIDResult'];
+  }
+
+  public function GetStudentDetails()
+  {
+    $GetStudentDetails=$this->proxy->GetStudentDetails($this->request);
+    return $GetStudentDetails['GetStudentDetailsResult'];
+  }
+
+  public function GetUserDetails()
+  {
+    $GetUserDetails=$this->proxy->GetUserDetails($this->request);
+    return $GetUserDetails['GetUserDetailsResult'];
   }
 }
  ?>
