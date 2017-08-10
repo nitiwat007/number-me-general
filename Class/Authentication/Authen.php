@@ -20,13 +20,20 @@
 
   }
 
+/////////////////////////////////////////////////PsuPassportAuthen/////////////////////////////////////////////////
+
   class PsuPassportAuthen extends Authen
   {
     private $client;
+    private $request;
 
     public function __construct($username="",$password="")
     {
       parent::__construct($username,$password);
+      $this->request=array(
+        'username'=>parent::getUsername(),
+        'password'=>parent::getPassword()
+      );
       require_once 'nusoap_/nusoap.php';
       $client = new nusoap_client('https://passport.psu.ac.th/authentication/authentication.asmx?wsdl', true);
       $client->decode_utf8 = false;
@@ -36,21 +43,21 @@
     public function Authenticate()
     {
 
-      $request=array(
-        'username'=>parent::getUsername(),
-        'password'=>parent::getPassword()
-      );
-      $authen = $this->proxy->Authenticate($request);
+      $authen = $this->proxy->Authenticate($this->request);
       return $authen["AuthenticateResult"];
     }
 
 
-
     public function GetStaffDetails()
     {
-      require_once 'nusoap_/nusoap.php';
+
+      $GetStaffDetails=$this->proxy->GetStaffDetails($this->request);
+      return $GetStaffDetails['GetStaffDetailsResult'];
     }
   }
+
+
+  /////////////////////////////////////////////////roleprovider/////////////////////////////////////////////////
 
   class roleprovider extends PsuPassportAuthen
   {
@@ -58,25 +65,24 @@
 
     public function __construct($app_id="",$username="")
     {
+      parent::__construct($username);
       $this->app_id=$app_id;
-      $this->username=$username;
     }
 
     public function getroles()
     {
         $method="GET";
-        $url = "http://api.phuket.psu.ac.th/roleprovider/service/getroles/" . $this->app_id . "/" . $this->username;
+        $url = "http://api.phuket.psu.ac.th/roleprovider/service/getroles/" . $this->app_id . "/" . parent::getUsername();
         $result = CallAPI($method, $url); // function CallAPI is in this file.
         $json_data = json_decode($result, true);
-        $number_role = count($json_data["result"]);
 
-        return $number_role;
+        return $json_data;
     }
   }
 
 
 
-///////////////////////////////////////// function ///////////////////////////////////////////
+///////////////////////////////////////// function //////////////////////////////////////////////////////
 
   function CallAPI($method, $url, $data = false) {
       $curl = curl_init();

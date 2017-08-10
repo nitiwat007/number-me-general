@@ -2,47 +2,27 @@
 
 session_start();
 include("A_connect.inc");
-
 include('lib/mainfunction.php');
 include('lib/web.inc.php');
-// include("function/roles.php");
-
-require_once('Class/Authentication/Authen.php');
-include 'nusoap_/nusoap.php';
-// $function = "Authenticate";
+include_once('Class/Authentication/Authen.php');
+;
 $username = $_POST['username'];
 $password = $_POST['password'];
-// $request = array(
-//     'username' => $username,
-//     'password' => $password
-// );
-// $client = new nusoap_client('https://passport.psu.ac.th/authentication/authentication.asmx?wsdl', true);
-// $client->decode_utf8 = false;
-//
-// $proxy = $client->getProxy();
-// $authen = $proxy->Authenticate($request);
 
 $PsuPassportAuthen=new PsuPassportAuthen($username,$password);
 
 
 if ($PsuPassportAuthen->Authenticate() == "true") {
 
-    // $sql				= "select * from users_permission where passport_username='$username' and status=1";
-    // mysql_select_db('numberme',$connect);
-    // $query				= mysql_query($sql, $connect);
-    // $num_rows 			= mysql_num_rows($query);
-
-    $method = "GET";
     $app_id = "720053c0-2faa-11e7-8127-45355c1349cc";
-    $username = "nitiwat.t";
-    $url = "http://api.phuket.psu.ac.th/roleprovider/service/getroles/" . $app_id . "/" . $username;
-    $result = CallAPI($method, $url);
-    $json_data = json_decode($result, true);
+    $roleprovider=new roleprovider($app_id,$username);
+    $json_data = $roleprovider->getroles();
     $number_role = count($json_data["result"]);
 
     if ($number_role > 0) {
-        $result = $proxy->GetStaffDetails($request);
-        $GetStaffDetailsResult = $result['GetStaffDetailsResult'];
+
+        $GetStaffDetailsResult = $PsuPassportAuthen->GetStaffDetails();
+
         $_SESSION['ID_Member'] = $GetStaffDetailsResult["string"][0];
         $_SESSION['Name_Member'] = $GetStaffDetailsResult["string"][1] . " " . $GetStaffDetailsResult["string"][2];
         $_SESSION['access'] = "pass";
@@ -55,10 +35,8 @@ if ($PsuPassportAuthen->Authenticate() == "true") {
           }
           $_SESSION['roles']=$roles;
 
-          // foreach($_SESSION['roles'] as $role){
-          //   echo $role;
-          // }
-
+          // echo var_dump($GetStaffDetailsResult["string"][1])."<br>";
+          // echo var_dump("นิติวัฒน์")."<br>";
         echo '<META HTTP-EQUIV="Refresh"  CONTENT="0;URL=main.php">';
     } else {
         echo "YOU DON'T HAVE PERMISSION";

@@ -3,6 +3,10 @@
 
   class testAuthen extends TestCase{
 
+    private $username="nitiwat.t";
+    private $password="";
+    private $wrongpassword="123456789";
+
     // public $authen;
 
     // public function test_GetUsername()
@@ -43,14 +47,24 @@
 
     public function test_PsuPassportAuthenticatFail()
     {
-      $PsuPassportAuthen=new PsuPassportAuthen("nitiwat.t","123456789");
+      $PsuPassportAuthen=new PsuPassportAuthen($this->username,$this->wrongpassword);
       $this->assertNotEquals("true",$PsuPassportAuthen->Authenticate());
     }
 
     public function test_roleprovider_getroles()
     {
-      $roleprovider=new roleprovider("720053c0-2faa-11e7-8127-45355c1349cc","nitiwat.t");
-      $this->assertEquals(1,$roleprovider->getroles());
+      $roleprovider=new roleprovider("720053c0-2faa-11e7-8127-45355c1349cc",$this->username);
+      $json_data = $roleprovider->getroles();
+      $number_role = count($json_data["result"]);
+      $this->assertEquals(1,$number_role);
+    }
+
+    public function test_PsuPassportAuthen_GetStaffDetails()
+    {
+      $PsuPassportAuthen=new PsuPassportAuthen($this->username,$this->password);
+      $GetStaffDetailsResult = $PsuPassportAuthen->GetStaffDetails();
+      $staff_id=$GetStaffDetailsResult["string"][0];
+      $this->assertEquals("0016508",$staff_id);
     }
   }
  ?>
