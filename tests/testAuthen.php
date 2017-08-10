@@ -1,5 +1,8 @@
 <?php
   use PHPUnit\Framework\TestCase;
+  //include_once('/../Class/Authentication/Authen.php');
+  include_once('/../Class/Authentication/PsuPassportAuthen.php');
+  include_once('/../Class/Authentication/roleprovider.php');
 
   class testAuthen extends TestCase{
 
